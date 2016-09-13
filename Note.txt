@@ -6,3 +6,6 @@
 349. Intersection of Two Arrays ...... |
 283. Move Zeroes ...... |
 252. Meeting Rooms
+253. Meeting Rooms ||
+387. First Unique Character in a String
+169. Majority Element
