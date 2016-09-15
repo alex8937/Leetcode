@@ -1,5 +1,7 @@
 class Solution {
+
 public:
+	// version 1: backtracking
     bool canWin(string s) {
         unordered_map<string, bool> dict;
         return canWin_helper(s, dict);
@@ -23,6 +25,47 @@ public:
 
         }
         return false;        
+    }
+	// nim game
+    int findfirstmissing(const unordered_set<int>& dict) {
+        int ans = dict.size();
+        for(int i = 0; i < dict.size(); ++i) {
+            if(!dict.count(i)) return i;
+        }
+        return ans;
+    }
+    bool canWin(string s) {
+        int maxplus = 0;
+        int plus = 0;
+        for(int i = 0; i < s.size(); ++i) {
+            if(s[i] == '+') {
+                plus++;
+            }
+            if(s[i] == '-' || i == s.size() - 1) {
+                maxplus = max(plus, maxplus);
+                plus = 0;
+            }
+        }
+        vector<int> nim(maxplus + 1, 0);
+        for(int i = 2; i < nim.size(); ++i) {
+            unordered_set<int> dict;
+            for(int j = 0; j <= i - j - 2; ++j) {
+                dict.insert(nim[j] ^ nim[i - j - 2]);
+            }
+            nim[i] = findfirstmissing(dict);
+        }
+        plus = 0;
+        int ans = nim[0];
+        for(int i = 0; i < s.size(); ++i) {
+            if(s[i] == '+') {
+                plus++;
+            }
+            if(s[i] == '-' || i == s.size() - 1) {
+                ans ^= nim[plus];
+                plus = 0;
+            }
+        }
+        return ans != 0;
     }
 };
 

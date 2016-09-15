@@ -9,3 +9,7 @@
 253. Meeting Rooms ||
 387. First Unique Character in a String
 169. Majority Element
+330. Patching Array
+350. Intersection of Two Arrays II
+206. Reverse Linked List (Recursive)
+326. Power of Three
