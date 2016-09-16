@@ -12,4 +12,9 @@
 330. Patching Array
 350. Intersection of Two Arrays II
 206. Reverse Linked List (Recursive)
-326. Power of Three
+202. Happy Number
+191. Number of 1 Bits
+263. Ugly Number
+264. Ugly Number II
+235. Lowest Common Ancestor of a Binary Search Tree
+236. Lowest Common Ancestor of a Binary Tree
