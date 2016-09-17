@@ -24,3 +24,8 @@
 21. Merge Two Sorted Lists
 345. Reverse Vowels of a String
 342. Power of Four
+24. Swap Nodes in Pairs
+141. Linked List Cycle
+142. Linked List Cycle II
+270. Closest Binary Search Tree Value
+107. Binary Tree Level Order Traversal II
