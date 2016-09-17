@@ -18,6 +18,8 @@
 264. Ugly Number II ...... |
 235. Lowest Common Ancestor of a Binary Search Tree ...... |
 236. Lowest Common Ancestor of a Binary Tree ...... |
-98. Validate Binary Search Tree
-165. Compare Version Numbers
+98. Validate Binary Search Tree ...... |
+165. Compare Version Numbers  ...... |
 229. Majority Element II
+21. Merge Two Sorted Lists
+345. Reverse Vowels of a String
