@@ -23,3 +23,4 @@
 229. Majority Element II
 21. Merge Two Sorted Lists
 345. Reverse Vowels of a String
+342. Power of Four
