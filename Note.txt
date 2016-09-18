@@ -30,3 +30,6 @@
 270. Closest Binary Search Tree Value
 107. Binary Tree Level Order Traversal II
 66. Plus One
+326. Power of Three
+118. Pascal's Triangle
+249. Group Shifted String
