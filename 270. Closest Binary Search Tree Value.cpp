@@ -11,7 +11,16 @@ class Solution {
 public:
     int closestValue(TreeNode* root, double target) {
 			// version1: search 
-        int ans = root -> val;
+			// Note: new_diff > diff does not means the answer cannot be in the subtree
+			// e.g.		Need to search until leaf
+/*			4				target: 3.1 
+       / 
+			1	
+		 / \
+		0		2
+		     \
+				  3 		*/
+				int ans = root -> val;
         double diff = abs(ans - target);
         while(root) {
             double new_diff = abs(root -> val - target);
