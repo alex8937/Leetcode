@@ -33,3 +33,4 @@
 326. Power of Three
 118. Pascal's Triangle
 249. Group Shifted String
+1. Two Sum
