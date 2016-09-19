@@ -34,3 +34,6 @@
 118. Pascal's Triangle
 249. Group Shifted String
 1. Two Sum
+189. Rotate Array
+186. Reverse Words in a String II
+151. Reverse Words in a String
