@@ -40,3 +40,4 @@
 7. Reverse Integer
 160. Intersection of Two Linked Lists
 172. Factorial Trailing Zeroes
+225. Implement Stack using Queues
