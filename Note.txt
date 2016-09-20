@@ -41,3 +41,6 @@
 160. Intersection of Two Linked Lists
 172. Factorial Trailing Zeroes
 225. Implement Stack using Queues
+15. 3Sum
+16. 3Sum Closest
+53. Maximum Subarray
