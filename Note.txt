@@ -44,3 +44,8 @@
 15. 3Sum
 16. 3Sum Closest
 53. Maximum Subarray
+11. Container With Most Water
+113. Path Sum II
+208. Implement Trie (Prefix Tree)
+274. H-Index
+275. H-Index II
