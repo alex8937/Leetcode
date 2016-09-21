@@ -49,3 +49,5 @@
 208. Implement Trie (Prefix Tree)
 274. H-Index
 275. H-Index II
+268. Missing Number
+69. Sqrt(x)
