@@ -51,3 +51,7 @@
 275. H-Index II
 268. Missing Number
 69. Sqrt(x)
+139. Word Break
+285. Inorder Successor in BST
+230. Kth Smallest Element in a BST
+
