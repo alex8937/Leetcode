@@ -57,4 +57,8 @@
 3. Longest Substring Without Repeating Characters
 131. Palindrome Partitioning
 49. Group Anagrams
+2. Add Two Numbers
+105. Construct Binary Tree from Preorder and Inorder Traversal
+50. Pow(x, n)
+386. Lexicographical Numbers
 
