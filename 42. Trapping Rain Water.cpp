@@ -32,19 +32,20 @@ public:
         return ans;
     //version3: using Stack
         stack<int> st;
-        int ans;
-        for(int i = 0; i < height.size(); ++i) {
-            if(st.empty() || height[st.top()] >= height[i]) {
-                st.push(i);
+        int ans = 0;
+        int pos = 0;
+        while(pos < height.size()) {
+            if(st.empty() || height[pos] <= height[st.top()]) {
+                st.push(pos);
+                pos++;
             }
             else {
-                int bottom = st.top();
+                int bottom = height[st.top()];
                 st.pop();
-                if (!st.empty()) {
-                    int lower = min(height[stack.top()], height[i]);
-                    ans += (lower - height[bottom]) * (i - stack.top() - 1);
-                }
-                i--;
+                if(!st.empty()) {
+                    int bar = min(height[st.top()], height[pos]);
+                    ans += (bar - bottom) * (pos - st.top() - 1);
+                }                
             }
         }
         return ans;
