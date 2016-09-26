@@ -61,4 +61,9 @@
 105. Construct Binary Tree from Preorder and Inorder Traversal
 50. Pow(x, n)
 386. Lexicographical Numbers
+79. Word Search
+63. Unique Paths II
+215. Kth Largest Element in an Array
+42. Trapping Rain Water
+117. Populating Next Right Pointers in Each Node II
 
