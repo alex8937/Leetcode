@@ -69,4 +69,7 @@
 114. Flatten Binary Tree to Linked List
 219. Contains Duplicate II
 220. Contains Duplicate III
+198. House Robber
+190. Reverse Bits
+227. Basic Calculator II
 
