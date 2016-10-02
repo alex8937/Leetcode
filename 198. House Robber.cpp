@@ -1,15 +1,19 @@
 class Solution {
 public:
     int rob(vector<int>& nums) {
-        int len = nums.size();
-        if(len == 0) return 0;
-        if(len == 1) return nums[0];
-        vector<int> sum = nums;
-        for(int i = 2; i < len; ++i) {
-            if(i == 2) sum[i] = nums[i] + nums[i - 2];
-            else sum[i] = max(sum[i - 2], sum[i - 3]) + nums[i];
+/*
+Include this house:
+i = num[k] + e (money of this house + money robbed excluding the previous house)
+
+Exclude this house:
+e = max(i, e) (max of money robbed including the previous house or money robbed excluding the previous house)
+*/
+        int include = 0, exclude = 0;
+        for(auto n : nums) {
+            int temp = include;
+            include = exclude + n;
+            exclude = max(temp, exclude);
         }
-        return max(sum[len - 1], sum[len - 2]);
-        
+        return max(include, exclude);
     }
 };

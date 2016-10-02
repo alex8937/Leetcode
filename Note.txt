@@ -67,4 +67,6 @@
 42. Trapping Rain Water
 117. Populating Next Right Pointers in Each Node II
 114. Flatten Binary Tree to Linked List
+219. Contains Duplicate II
+220. Contains Duplicate III
 
