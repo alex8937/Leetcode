@@ -72,4 +72,6 @@
 198. House Robber
 190. Reverse Bits
 227. Basic Calculator II
+251. Flatten 2D Vector
+221. Maximal Square
 
