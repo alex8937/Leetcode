@@ -18,6 +18,6 @@ public:
         for (char c : t) {
             num ^= c;
         }
-        return char(num);			
+        return num;			
     }
 };
