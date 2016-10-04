@@ -8,7 +8,7 @@
  * };
  */
 class Solution {
-// version1: traverse
+// version1: traverse (recursion)
 public:
     bool isValidBST(TreeNode* root) {
         TreeNode* pre = NULL;
@@ -24,6 +24,41 @@ public:
     }
 };
 
+
+
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+// version2: traverse (iteration)
+    bool isValidBST(TreeNode* root) {
+        stack<TreeNode*> st;
+        TreeNode* pre = nullptr;
+        while(!st.empty() || root) {
+            while(root) {
+                st.push(root);
+                root = root -> left;
+            }
+            if(!st.empty()) {
+                root = st.top();
+                if(pre && pre -> val >= root -> val) return false;
+                pre = root;
+                st.pop();
+                root = root -> right;
+            }
+        }
+        return true;
+    }
+};
+
+
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -34,7 +69,7 @@ public:
  * };
  */
 struct Result {
-// version2: Divide & Conquer
+// version3: Divide & Conquer
     Result(bool v, TreeNode* _min = nullptr, TreeNode* _max = nullptr) : isBST(v), minNode(_min), maxNode(_max) {}
     TreeNode* minNode;
     TreeNode* maxNode;
