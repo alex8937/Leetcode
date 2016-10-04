@@ -77,4 +77,9 @@
 396. Rotate Function
 14. Longest Common Prefix
 336. Palindrome Pairs
+68. Text Justification
+257. Binary Tree Paths
+408. Valid Word Abbreviation
+346. Moving Average from Data Stream
+276. Paint Fence
 
