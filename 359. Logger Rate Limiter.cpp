@@ -1,4 +1,6 @@
 class Logger {
+private:
+    unordered_map<string, int> dict;
 public:
     /** Initialize your data structure here. */
     Logger() {
@@ -9,17 +11,12 @@ public:
         If this method returns false, the message will not be printed.
         The timestamp is in seconds granularity. */
     bool shouldPrintMessage(int timestamp, string message) {
-        if(!dict.count(message) || dict[message] + 10 <= timestamp) {
+        if(!(dict.count(message) && timestamp - dict[message] < 10)) {
             dict[message] = timestamp;
             return true;
         }
-        else {
-            return false;
-        }
-        
+        return false;
     }
-private:
-    unordered_map<string, int> dict;
 };
 
 /**

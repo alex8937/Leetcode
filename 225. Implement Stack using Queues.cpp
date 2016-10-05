@@ -13,9 +13,8 @@ public:
         auto& full = (q1.empty()) ? q2 : q1;
         auto& emp = (!q1.empty()) ? q2 : q1;
         while(full.size() != 1) {
-            int temp = full.front();
-            full.pop();
-            emp.push(temp);
+            emp.push(full.front());
+						full.pop();
         }
         full.pop();
     }
