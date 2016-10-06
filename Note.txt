@@ -84,4 +84,7 @@
 276. Paint Fence
 288. Unique Word Abbreviation
 401. Binary Watch
+359. Logger Rate Limiter
+36. Valid Sudoku
+289. Game of Life
 
