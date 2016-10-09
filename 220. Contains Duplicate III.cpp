@@ -18,8 +18,8 @@ public:
         return false;
     }
 	//version2: Bucket		O(n)		
-    inline long f(long n, int t) {
-        return (long(n) - INT_MIN) / (long(t) + 1);  //Bucket size to be t + 1, which handles t = 0;
+    inline long f(long n, long t) {
+        return (n - INT_MIN) / (t + 1);  //Bucket size to be t + 1, which handles t = 0;
     }
     bool containsNearbyAlmostDuplicate(vector<int>& nums, int k, int t) {
         if(t < 0) return false;

@@ -11,14 +11,14 @@ public:
             string w = words[i];
             vector<string> left = patch(w, true);
             for(auto str : left) {
-                if(dict.count(str) && dict[str] != dict[words[i]]) {
+                if(dict.count(str) && dict[str] != i) {
                     ans.insert(vector<int>{dict[str], i});
                 }
             }
             reverse(w.begin(), w.end());
             vector<string> right = patch(w, false);
             for(auto str : right) {
-                if(dict.count(str) && dict[str] != dict[words[i]]) {
+                if(dict.count(str) && dict[str] != i) {
                     ans.insert(vector<int>{i, dict[str]});
                 }
             }
@@ -31,7 +31,7 @@ public:
         for(int i = 0; i <= s.size(); ++i) {
             bool valid = true;
             for(int j = 1; j <= i / 2; ++j) {
-                valid &= (s[i / 2 - j] == s[i / 2 + j - (1 - i % 2)]);
+                valid &&= (s[i / 2 - j] == s[i / 2 + j - (1 - i % 2)]);
                 if(!valid) break;
             }
             if(valid) {
