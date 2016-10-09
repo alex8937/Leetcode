@@ -7,7 +7,7 @@ public:
             base *= 10;
             digits++;
         }
-        int index = (n - 1) / digits + base;
+        int index = base + (n - 1) / digits ;
         int offset = digits - (n - 1) % digits;
         while(offset > 1) {
             index /= 10;
