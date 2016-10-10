@@ -1,7 +1,7 @@
 class Solution {
 public:
     int maxSubArrayLen(vector<int>& nums, int k) {
-        unordered_map<int, int> dict;
+        unordered_map<int, int> dict;	// key: sum, value: index
         dict[0] = -1;
         int len = 0, sum = 0;
         for(int i = 0; i < nums.size(); ++i) {
