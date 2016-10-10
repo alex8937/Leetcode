@@ -87,6 +87,14 @@
 359. Logger Rate Limiter
 36. Valid Sudoku
 289. Game of Life
+357. Count Numbers with Unique Digits
+400. Nth Digit
 [92].Backpack
 [125].Backpack II
+28. Implement strStr()
+[79].Longest Common Substring
+[138].Subarray Sum
+325. Maximum Size Subarray Sum Equals k
+26. Remove Duplicates from Sorted Array
+238. Product of Array Except Self
 
