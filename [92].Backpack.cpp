@@ -45,9 +45,8 @@ public:
         dp[0] = true;
         int ans = 0;
         for(int i = 0; i < A.size(); ++i) {
-            for(int j = m; j >= 0; --j) {
-								if(i == 0) dp[A[i]] = true;
-                else dp[j] = dp[j] || (j >= A[i] && dp[j - A[i]]);
+            for(int j = m; j >= 1; --j) {
+                dp[j] = dp[j] || (j >= A[i] && dp[j - A[i]]);
                 if(dp[j]) ans = max(ans, j);
             }
         }
