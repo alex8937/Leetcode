@@ -2,10 +2,7 @@ class Solution {
 public:
     string numberToWords(int num) {
         if(num == 0) return tens[0];
-        else {
-            string ans = help(num);
-            return ans.substr(1);
-        }
+				return help(num).substr(1);
     }
 private:
     const vector<string> digits = {"Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"};
