@@ -16,3 +16,30 @@ class Solution(object):
                 area += max_right - height[right]
                 right -= 1
         return area
+		
+class Solution(object):
+    def trap(self, height):
+        """
+        :type height: List[int]
+        :rtype: int
+        """
+		area, pos, stack = 0, 0, list()
+		while pos < len(height):
+			if not stack or height[pos] <= height[stack[-1]]:
+				stack.append(pos)
+				pos += 1
+			else:
+				bottom = height[stack.pop()]
+				if stack:
+					top = min(height[pos], height[stack[-1]])
+					width = pos - stack[-1] - 1
+					area += (top - bottom) * width
+		return area
+			
+			
+			
+			
+			
+			
+			
+			
