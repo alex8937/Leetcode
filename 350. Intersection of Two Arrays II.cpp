@@ -78,29 +78,32 @@ public:
       int end = nums.size() - 1;
       while(start < end) {
         int mid = start + (end - start) / 2;
-        if(nums[mid] > n) {
-          end = mid - 1;  
-        }
-        else if(nums[mid] < n) {
-          start = mid + 1;
+        if(nums[mid] >= n) {
+          end = mid;  
         }
         else {
-          end = mid;
+          start = mid + 1;
         }
       }
       if(nums[start] == n) return start;
+      return -1;
+    }
+
+    int find(int n, vector<int>& nums, int start) { //version2
+      int it = lower_bound(nums.begin() + start, nums.end(), n) - nums.begin();
+      if(nums[it] == n) return it;
       return -1;
     }
     
     vector<int> intersect(vector<int> nums1, vector<int> nums2) {
       sort(nums1.begin(), nums1.end());
       sort(nums2.begin(), nums2.end());
-      auto nl = (nums1.size() > nums2.size()) ? nums1 : nums2;
-      auto ns = (nums1.size() > nums2.size()) ? nums2 : nums1;
+      auto long_nums = (nums1.size() > nums2.size()) ? nums1 : nums2;
+      auto short_nums = (nums1.size() > nums2.size()) ? nums2 : nums1;
       vector<int> ans;
       int start = 0;
-      for(int n : ns) {
-        int index = find(n, nl, start);
+      for(int n : short_nums) {
+        int index = find(n, long_nums, start);
         if(index >= start) {
           start = index + 1;
           ans.emplace_back(n);

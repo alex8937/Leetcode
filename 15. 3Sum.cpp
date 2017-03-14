@@ -1,24 +1,25 @@
 class Solution {
 public:
     vector<vector<int>> threeSum(vector<int>& nums) {
-        sort(nums.begin(), nums.end());
         vector<vector<int>> ans;
-        for(int i = 0; i < nums.size(); ++i) {
-            if(i > 0 && nums[i] == nums[i - 1]) continue;  // skip duplicated nums[i]
-            int start = i + 1;
-            int end = nums.size() - 1;
+        sort(nums.begin(), nums.end());
+        for(int i = 0; i < int(nums.size()) - 2; ++i) {
+            if(i > 0 && nums[i] == nums[i - 1]) continue;
+            int start = i + 1, end = nums.size() - 1;
             while(start < end) {
-                if(nums[start] + nums[end] > -nums[i]) {
-                    end--;
+                int sum = nums[i] + nums[start] + nums[end];
+                if(sum == 0) {
+                    ans.push_back({nums[i], nums[start++], nums[end--]});
                 }
-                else if(nums[start] + nums[end] < -nums[i]){
+                else if(sum < 0) {
                     start++;
                 }
                 else {
-                    ans.push_back(vector<int>{nums[i], nums[start++], nums[end--]});
-                    while(start < end && nums[start] == nums[start - 1]) start++; // skip duplicated nums[start]
-                    while(start < end && nums[end] == nums[end + 1]) end--; // skip duplicated nums[end]
+                    end--;
+
                 }
+                while(sum <= 0 && start < end && nums[start] == nums[start - 1]) start++; // skip duplicated nums[start]
+                while(sum >= 0 && start < end && nums[end] == nums[end + 1]) end--; // skip duplicated nums[end]
             }
         }
         return ans;

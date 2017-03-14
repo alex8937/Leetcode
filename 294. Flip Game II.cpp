@@ -1,31 +1,29 @@
 class Solution {
-
 public:
-	// version 1: backtracking
+// version 1: backtracking
     bool canWin(string s) {
         unordered_map<string, bool> dict;
-        return canWin_helper(s, dict);
+        return canWin_helper(dict, s);
     }
-    
-    bool canWin_helper(string s, unordered_map<string, bool>& dict) {
+    bool canWin_helper(unordered_map<string, bool>& dict, string s) {
         if(dict.count(s)) return dict[s];
         for(int i = 0; i < int(s.size()) - 1; ++i) {
-            if(s.substr(i,2) == "++") {
-                string temp = s.substr(0,i) + "--" + s.substr(i + 2);
-                if(!canWin_helper(temp,dict)) {
-                    dict[temp] = false;
-                    return true;		//Once find cannotwin in this level,
-																		//it means canwin for rival in parent level
+            if(s.substr(i, 2) == "++") {
+                string copy = s.substr(0, i) + "--" + s.substr(i + 2);
+                if(!canWin_helper(dict, copy)) {
+                    dict[s] = true;
+                    return true;
+					//If rival cannot win, then player can win
                 }
-                else {
-                    dict[temp] = true;                    
-                }
-
             }
-
         }
-        return false;        
+		//Player cannot win
+        dict[s] = false;
+        return false;
     }
+};
+
+public:
 	// nim game
     int findfirstmissing(const unordered_set<int>& dict) {
         int ans = dict.size();
@@ -46,22 +44,23 @@ public:
                 plus = 0;
             }
         }
-        vector<int> nim(maxplus + 1, 0);
-        for(int i = 2; i < nim.size(); ++i) {
+        vector<int> nims(maxplus + 1, 0);
+        for(int len = 2; len <= max_plus; ++len) {
             unordered_set<int> dict;
-            for(int j = 0; j <= i - j - 2; ++j) {
-                dict.insert(nim[j] ^ nim[i - j - 2]);
+            for(int first = 0; first <= len - first - 2; ++first) {
+                int second = len - first - 2;
+                dict.insert(nims[first]^nims[second]);
             }
-            nim[i] = findfirstmissing(dict);
+            nims[len] = firstmissing(dict);
         }
         plus = 0;
-        int ans = nim[0];
+        int ans = nims[0];
         for(int i = 0; i < s.size(); ++i) {
             if(s[i] == '+') {
                 plus++;
             }
             if(s[i] == '-' || i == s.size() - 1) {
-                ans ^= nim[plus];
+                ans ^= nims[plus];
                 plus = 0;
             }
         }

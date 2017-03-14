@@ -11,7 +11,16 @@ public:
     void deleteNode(ListNode* node) {
         ListNode* nextNode = node -> next;
         node -> val = nextNode -> val;
-        node -> next = nextNode -> next;
+        node -> next = nextNode -> next; 
+        delete nextNode;  // Do remember delete to prevent memory leak
+    }
+};
+
+class Solution {
+public:
+    void deleteNode(ListNode* node) {
+        ListNode* nextNode = node -> next;
+		*node = *nextNode
         delete nextNode;  // Do remember delete to prevent memory leak
     }
 };

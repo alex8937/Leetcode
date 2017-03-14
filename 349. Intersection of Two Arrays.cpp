@@ -2,12 +2,15 @@ class Solution {
 public:
     vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
 			//version 1: use Set
-        unordered_set<int> dict1(nums1.begin(), nums1.end()); 
-        unordered_set<int> sol;
-        for(int i = 0; i < nums2.size(); ++i) {
-            if(dict1.count(nums2[i])) sol.insert(nums2[i]);
+        auto& long_nums = (nums1.size() > nums2.size())? nums1 : nums2;
+        auto& short_nums = (nums1.size() > nums2.size())? nums2 : nums1;
+        unordered_set<int> dict(short_nums.begin(), short_nums.end()), ans;
+        for(auto n : long_nums) {
+            if(dict.count(n)) {
+                ans.insert(n);
+            }
         }
-        return vector<int>(sol.begin(), sol.end());
+        return vector<int>(ans.begin(), ans.end());
 			//version 2: binary search
         sort(nums1.begin(), nums1.end());
         sort(nums2.begin(), nums2.end()); 
