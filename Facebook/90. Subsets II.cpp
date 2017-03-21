@@ -31,7 +31,7 @@ public:
     void subset_helper(vector<vector<int>>& ans, vector<int>& cand, int level, const vector<int>& nums){
     	ans.push_back(cand);
     	for(int i = level; i < nums.size(); ++i){
-    		if(i - 1 >=0 && i!= level && nums[i] == nums[i - 1]) continue;
+    		if(i > level && nums[i] == nums[i - 1]) continue;
     		cand.push_back(nums[i]);
     		subset_helper(ans, cand, i + 1, nums);
     		cand.pop_back();
