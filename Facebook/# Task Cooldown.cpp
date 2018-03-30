@@ -25,7 +25,7 @@ int task_rearrange(string tasks, int cooldown) {
 	for(auto it : dict) {
 		pq.emplace(it.second, it.first);
 	}
-	int cur = 1, left = tasks.size();
+	int cur = 1;
 	while(!pq.empty()) {
 		vector<pair<int, char>> cache;
 		int count = cooldown + 1;
@@ -41,7 +41,6 @@ int task_rearrange(string tasks, int cooldown) {
 			if(--temp.first > 0) cache.push_back(temp);
 			cur++;
 			count--;
-			left--;
 		}
 		for(auto it : cache) pq.push(it);
 	}
