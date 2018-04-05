@@ -32,16 +32,23 @@ class Solution {
 public:
     int findKthLargest(vector<int>& nums, int k) {
         priority_queue<int, vector<int>, cmp> pq;
-        for(int n : nums) {
-            if(pq.size() < k) {
-                pq.push(n);
-            }
-            else {
-                if(n > pq.top()) {
-                    pq.pop();
-                    pq.push(n);
-                }
-            }
+        for(auto n : nums) {
+            pq.push(n);
+            if(pq.size() > k) pq.pop();
+        }
+        return pq.top();
+    }
+};
+
+//version 3: min heap using lambda expression
+class Solution {
+public:
+    int findKthLargest(vector<int>& nums, int k) {
+        auto cmp = [](int& a, int&b) {return a > b;};
+        priority_queue<int, vector<int>, decltype(cmp)> pq(cmp);
+        for(auto n : nums) {
+            pq.push(n);
+            if(pq.size() > k) pq.pop();
         }
         return pq.top();
     }
