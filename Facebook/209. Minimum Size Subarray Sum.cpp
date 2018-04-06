@@ -21,7 +21,34 @@ public:
 class Solution {
 public:
     int minSubArrayLen(int s, vector<int>& nums) {
-    // Binary search O(nlogn)
+    // ver 2: Using built in lower_bound
+        auto sums = accumulate(nums);
+        int len = INT_MAX;
+        for(int start = 1; start < sums.size(); ++start) {
+            auto low_pt = lower_bound(sums.begin() + start, sums.end(), sums[start - 1] + s);
+            if(low_pt != sums.end()) {
+                int low = low_pt - sums.begin();
+                len = min(len, low - start + 1);
+            }
+        }
+        return (len == INT_MAX)? 0 : len;
+    }
+    
+    vector<int> accumulate(vector<int> nums) {
+        vector<int> sums(nums.size() + 1, 0);
+        for(int i = 0; i < nums.size(); ++i) {
+            sums[i + 1] = sums[i] + nums[i];
+        }
+        return sums;
+    }
+
+};
+
+
+class Solution {
+public:
+    int minSubArrayLen(int s, vector<int>& nums) {
+    // ver 3: Binary search O(nlogn)
         auto sums = accumulate(nums);
         int len = INT_MAX;
         for(int start = 1; start < sums.size(); ++start) {
