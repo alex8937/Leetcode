@@ -1,5 +1,6 @@
 class Solution {
 public:
+    //version1: using addition
     int numDecodings(string s) {
         int ans = 0, pre = 1, ppre = 0;
         for(int i = 0; i < s.size(); ++i) {
@@ -11,6 +12,18 @@ public:
             pre = ans;
         }
         return ans;
+    }
+    // version2: using product
+    int numDecodings(string s) {
+      int ans = 0, pre = 1, ppre = 1;
+      for (int i = 0; i < s.size(); i++) {
+        if(i == 0) ans = pre * valid(s[i]);
+        else ans = pre * valid(s[i]) + ppre * valid(s[i - 1], s[i]);
+        if (ans == 0) return 0;
+        ppre = pre;
+        pre = ans;
+      }
+      return ans;
     }
     
     bool valid(char a) {
