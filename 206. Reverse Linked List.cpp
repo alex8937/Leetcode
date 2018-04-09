@@ -15,7 +15,7 @@ public:
         while(cur) {
             ListNode* nxt = cur -> next;
             cur -> next = pre;
-            pre  = cur;
+            pre = cur;
             cur = nxt;
         }
         return pre;

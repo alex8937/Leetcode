@@ -2,17 +2,16 @@ class Solution {
 public:
     int trap(vector<int>& height) {
     //version1: Two pointers
-        int ans = 0;
-        int start = 0, end = height.size() - 1;
-        int maxleft = 0, maxright = 0;
+        int ans = 0, start = 0, end = height.size() - 1;
+        int maxlevel = 0;
         while(start < end) {
             if(height[start] < height[end]) {
-                maxleft = max(maxleft, height[start]);
-                ans += maxleft - height[start++];                
+                maxlevel = max(maxlevel, height[start]);
+                ans += maxlevel - height[start++];                
             }
             else {
-                maxright = max(maxright, height[end]);
-                ans += maxright - height[end--];                   
+                maxlevel = max(maxlevel, height[end]);
+                ans += maxlevel - height[end--];                   
             }
         }
         return ans;

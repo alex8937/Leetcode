@@ -20,6 +20,22 @@ public:
 
 class Solution {
 public:
+    // ver 1: Other implementation
+    int minSubArrayLen(int s, vector<int>& nums) {
+        int start = 0, minlen = INT_MAX, sum = 0;
+        for(int end = 0; end < nums.size(); ++end) {
+            sum += nums[end];
+            while(sum >= s) {
+                minlen = min(minlen, end - start + 1);
+                sum -= nums[start++];
+            }
+        }
+        return (minlen == INT_MAX)? 0 : minlen;
+    }
+};
+
+class Solution {
+public:
     int minSubArrayLen(int s, vector<int>& nums) {
     // ver 2: Using built in lower_bound
         auto sums = accumulate(nums);
