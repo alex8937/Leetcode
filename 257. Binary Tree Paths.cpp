@@ -17,15 +17,15 @@ public:
         path(ans, cand, root);
         return ans;
     }
-    void path(vector<string>& ans, string cand, TreeNode* root) {
-        auto link = (cand.empty())? "" : "->";
-        cand += link + to_string(root -> val);
-        if(!root -> left && !root -> right) {
-            ans.push_back(cand);
-            return;
-        }
-        if(root -> left) help(ans, cand, root -> left);
-        if(root -> right) help(ans, cand, root -> right);    }
+    void path(vector<string>& ans, string& cand, TreeNode* root) {
+        int len = cand.size();
+        string link = (len == 0) ? "" : "->";
+        cand.append(link + to_string(node->val));
+        if (!node->left && !node->right) ans.push_back(cand);
+        if (node->left) help(ans, cand, node->left);
+        if (node->right) help(ans, cand, node->right);
+        cand.erase(cand.begin() + len, cand.end());   
+    }
 };
 
 class Solution {
