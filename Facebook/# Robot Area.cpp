@@ -1,6 +1,7 @@
 # include<iostream>
 # include<vector>
 # include<unordered_set>
+# include<unordered_map>
 # include<utility>
 # include <cassert>
 using namespace std;
@@ -33,6 +34,7 @@ class Robot{
     int j;
 };
 
+//Ver 1: used struct Pos to connect to neighbor
 struct Pos{
     Pos(int _i, int _j) : i(_i) , j(_j) {}
     int i, j;
@@ -77,7 +79,40 @@ void dfs(Robot* rob, unordered_set<int>& dict, Pos* root) {
   }
 }
 
+//Ver 2: Without struct but using hash map
 
+int opposite(int);
+int getArea(Robot*);
+void help(unordered_map<int, int>&, Robot*, int, int);
+
+int opposite(int k) {
+	return (k < 2) ? k + 2 : k - 2;
+}
+int myhash(int a, int b) {
+	a += 1 << 16;
+	b += 1 << 16;
+	return ((a + b) * (a * b + 1) << 1) + b;
+}
+int x[4] = { 1, 0, -1, 0 };
+int y[4] = { 0, 1, 0, -1 };
+
+int getArea(Robot* rob) {
+	unordered_map<int, int> dict;
+	help(dict, rob, 0, 0);
+	return dict.size();
+}
+
+void help(unordered_map<int, int>& dict, Robot* rob, int i, int j) {
+  if (dict[myhash(i, j)] == 4) return;
+	for (int k = 0; k < 4; ++k) {
+    dict[myhash(i, j)]++;
+    int new_i = i + x[k], new_j = j + y[k];
+		if (dict.count(myhash(new_i, new_j)) || !rob->move(k)) continue;
+		help(dict, rob, new_i, new_j);
+		rob -> move(opposite(k));
+	}
+}
+}
 
 int main() {
   vector<vector<int>> map1({{1,0,0,0,0,0},{1,1,1,0,1,0},{0,0,1,0,0,0},{0,0,0,1,0,0},{1,0,0,0,0,0},{1,1,0,0,1,0},{0,0,0,1,0,0}});
