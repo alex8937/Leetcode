@@ -34,60 +34,9 @@ class Robot{
     int j;
 };
 
-//Ver 1: used struct Pos to connect to neighbor
-struct Pos{
-    Pos(int _i, int _j) : i(_i) , j(_j) {}
-    int i, j;
-    int visit = 0;
-    vector<Pos*> neighbor = vector<Pos*>(4, nullptr); // 0: right, 1 : up, 2 : left, 3 : down
-};
-
-int opposite(int);
 int getArea(Robot*);
-void dfs(Robot*, unordered_set<int>&, Pos*);
-const vector<int> del_j({1, 0, -1, 0});
-const vector<int> del_i({0, -1, 0, 1});
+void help(unordered_set<int>&, Robot*&, int, int);
 
-int opposite(int dir) {
-  return dir + 4 * (dir < 2) - 2;
-}
-
-int myhash(int a, int b) {
-  a += (1 << 16);
-  b += (1 << 16);
-  return (((a + b) * (a * b + 1)) << 1) + b;
-}
-
-int getArea(Robot* rob) {
-  unordered_set<int> dict;
-  auto root = new Pos(0, 0);
-  dfs(rob, dict, root);
-  return dict.size();
-}
-
-void dfs(Robot* rob, unordered_set<int>& dict, Pos* root) {
-  if(root -> visit == 4) return;
-  dict.emplace(myhash(root -> i, root -> j));
-  for(int k = 0; k < 4; ++k) {
-    int new_i = root -> i + del_i[k];
-    int new_j = root -> j + del_j[k];
-    root -> visit += 1;    
-    if(dict.count(myhash(new_i, new_j)) || !rob -> move(k)) continue;
-    root -> neighbor[k] = new Pos(new_i, new_j);
-    dfs(rob, dict, root -> neighbor[k]);
-    rob -> move(opposite(k));
-  }
-}
-
-//Ver 2: Without struct but using hash map
-
-int opposite(int);
-int getArea(Robot*);
-void help(unordered_map<int, int>&, Robot*, int, int);
-
-int opposite(int k) {
-	return (k < 2) ? k + 2 : k - 2;
-}
 int myhash(int a, int b) {
 	a += 1 << 16;
 	b += 1 << 16;
@@ -97,21 +46,19 @@ int x[4] = { 1, 0, -1, 0 };
 int y[4] = { 0, 1, 0, -1 };
 
 int getArea(Robot* rob) {
-	unordered_map<int, int> dict;
+	unordered_set<int> dict;
 	help(dict, rob, 0, 0);
 	return dict.size();
 }
 
-void help(unordered_map<int, int>& dict, Robot* rob, int i, int j) {
-  if (dict[myhash(i, j)] == 4) return;
+void help(unordered_set<int>& dict, Robot*& rob, int i, int j) {
+  dict.insert(myhash(i, j));
 	for (int k = 0; k < 4; ++k) {
-    dict[myhash(i, j)]++;
     int new_i = i + x[k], new_j = j + y[k];
 		if (dict.count(myhash(new_i, new_j)) || !rob->move(k)) continue;
 		help(dict, rob, new_i, new_j);
-		rob -> move(opposite(k));
+		rob -> move((k + 2) % 4);
 	}
-}
 }
 
 int main() {

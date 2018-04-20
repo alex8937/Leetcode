@@ -16,18 +16,15 @@ public:
         qu.push(node);
         dict[node] = new UndirectedGraphNode(node -> label);
         while(!qu.empty()) {
-            int len = qu.size();
-            for(int i = 1; i <= len; ++i) {
-                auto cur = qu.front();
-                for(auto it : cur -> neighbors) {
-                    if(!dict.count(it)) {
-                        dict[it] = new UndirectedGraphNode(it -> label);
-                        qu.push(it);
-                    }
-                    dict[cur] -> neighbors.push_back(dict[it]);
+            auto cur = qu.front();
+            for(auto it : cur -> neighbors) {
+                if(!dict.count(it)) {
+                    dict[it] = new UndirectedGraphNode(it -> label);
+                    qu.push(it);
                 }
-                qu.pop();
+                dict[cur] -> neighbors.push_back(dict[it]);
             }
+            qu.pop();
         }
         return dict[node];
     }
