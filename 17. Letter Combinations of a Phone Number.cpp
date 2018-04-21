@@ -23,7 +23,7 @@ public:
 
     vector<string> letterCombinations(string digits) {
 	// Iteration    
-		vector<string> ans;
+        vector<string> ans;
         if(digits.size() == 0) return ans;
         vector<string> last = {""};
         for(int index = 0; index < digits.size(); ++index) {
