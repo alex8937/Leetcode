@@ -48,3 +48,21 @@ public:
         return dict[node];
     }
 };
+
+class Solution {
+public:
+//DFS v2
+    UndirectedGraphNode *cloneGraph(UndirectedGraphNode *node) {
+        unordered_map<UndirectedGraphNode*, UndirectedGraphNode*> dict;
+        help(dict, node);
+        return dict[node];
+    }
+    void help(unordered_map<UndirectedGraphNode*, UndirectedGraphNode*>& dict, UndirectedGraphNode *node) {
+        if(!node) return;
+        dict[node] = new UndirectedGraphNode(node -> label);
+        for(auto it : node -> neighbors) {
+            if(!dict.count(it)) help(dict, it);
+            dict[node] -> neighbors.push_back(dict[it]);
+        }
+    }
+};
