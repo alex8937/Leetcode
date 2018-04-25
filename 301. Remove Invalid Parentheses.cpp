@@ -1,5 +1,6 @@
 class Solution {
 public:
+//DFS
     vector<string> removeInvalidParentheses(string s) {
         unordered_set<string> ans;
         int left = 0;
@@ -31,5 +32,54 @@ private:
                 if(pair > 0) helper(s, index + 1, left, right, pair - 1, path + s[index], result);
             }
         }
+    }
+};
+
+
+class Solution {
+public:
+//BFS
+    vector<string> removeInvalidParentheses(string s) {
+        vector<string> ans;
+        queue<string> qu;
+        unordered_set<string> visit;
+        qu.push(s);
+        visit.insert(s);
+        bool found = false;
+        while(!qu.empty()) {
+            int len = qu.size();
+            for(int i = 0; i < len; ++i) {
+                auto head = qu.front();
+                qu.pop();
+                if(valid(head)) {
+                    found = true;
+                    ans.push_back(head);
+                }
+                else {
+                    for(int j = 0; j < head.size(); ++j) {
+                        if(head[j] != '(' && head[j] != ')') continue;
+                        auto str = head.substr(0, j) + head.substr(j + 1);
+                        if(!visit.count(str)) {
+                            qu.push(str);
+                            visit.insert(str);
+                        }
+                    }
+                }
+            }
+            if(found) break;
+        }
+        
+        return ans;
+    }
+    bool valid(string s) {
+        int cnt = 0;
+        for(auto c : s) {
+            if(c == '(') cnt++;
+            if(c == ')') {
+                if(cnt == 0) return false;
+                cnt--;
+            }
+        }
+        return cnt == 0;
     }
 };
