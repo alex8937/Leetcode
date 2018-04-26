@@ -23,14 +23,17 @@ public:
 
 class Solution {
 public:
+//Recursion
     bool isMatch(string s, string p) {
-		// Recursion
-        if(p.empty()) return s.empty();
-        if(p[1] != '*') {
-            return !s.empty() && (p[0] == s[0] || p[0] == '.') && isMatch(s.substr(1), p.substr(1));
-        }
-        else {
-            return isMatch(s, p.substr(2)) || (!s.empty() && (s[0] == p[0] || p[0] == '.') && isMatch(s.substr(1), p));
-        }
+        return isMatch(s, p, 0, 0);
     }
+    bool isMatch(string& s, string& p, int i, int j) {
+       if(i == s.size() && j == p.size()) return true;
+       if(j + 1 < p.size() && p[j + 1] == '*') {
+           return i < s.size() && (s[i] == p[j] || p[j] == '.') && isMatch(s, p, i + 1, j) || isMatch(s, p, i, j + 2);
+       }
+       else {
+           return i < s.size() && (s[i] == p[j] || p[j] == '.') && isMatch(s, p, i + 1, j + 1);
+       } 
+    }    
 };
