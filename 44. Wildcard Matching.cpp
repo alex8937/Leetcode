@@ -65,7 +65,7 @@ public:
 
 class Solution {
 public:
-//Iterative Method
+//Iterative Method V1
     bool isMatch(string s, string p) {
         int si = 0, pi = 0, sstar = -1, pstar = -1;
         while(si < s.size()) {
@@ -87,5 +87,31 @@ public:
         }
         while(pi < p.size() && p[pi] == '*') pi++;
         return pi == p.size();
+    }
+};
+
+class Solution {
+public:
+//Iterative Method V2
+    bool isMatch(string s, string p) {
+        int i = 0, j = 0, sstar = -1, pstar = -1;
+        while(i < s.size()) {
+            if(j < p.size() && (p[j] == s[i] || p[j] == '?')) {  //state1
+                i++;
+                j++;
+            }
+            else if(j < p.size() && p[j] == '*') {  // state 2
+                pstar = j;
+                sstar = i;
+                j++;
+            }
+            else if(pstar != -1) { // change to state2 but i proceed one position
+                j = pstar;
+                i = sstar + 1;  
+            }
+            else return false;
+        }
+        while(j < p.size() && p[j] == '*') j++;
+        return j == p.size();
     }
 };
