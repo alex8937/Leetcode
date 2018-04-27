@@ -41,7 +41,7 @@ int myhash(int a, int b) {
   //Cantor pairing function 
 	a += 1 << 16;
 	b += 1 << 16;
-	return (a + b) * (a + b + 1) + 2 * b;
+	return (a + b) * (a + b + 1) / 2 + b;
 }
 int x[4] = { 1, 0, -1, 0 };
 int y[4] = { 0, 1, 0, -1 };
