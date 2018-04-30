@@ -25,15 +25,15 @@ class Solution {
 public:
 //Recursion
     bool isMatch(string s, string p) {
-        return isMatch(s, p, 0, 0);
+        return help(s, p, 0, 0);
     }
-    bool isMatch(string& s, string& p, int i, int j) {
-       if(i == s.size() && j == p.size()) return true;
-       if(j + 1 < p.size() && p[j + 1] == '*') {
-           return i < s.size() && (s[i] == p[j] || p[j] == '.') && isMatch(s, p, i + 1, j) || isMatch(s, p, i, j + 2);
-       }
-       else {
-           return i < s.size() && (s[i] == p[j] || p[j] == '.') && isMatch(s, p, i + 1, j + 1);
-       } 
-    }    
+    bool help(string&s, string& p, int i, int j) {
+        if (i == s.size() && j == p.size()) return true;
+        if (j + 1 < p.size() && p[j + 1] == '*') {
+            return i < s.size() && (s[i] == p[j] || p[j] == '.') && help(s, p, i + 1, j) || help(s, p, i, j + 2);
+        }
+        else {	
+            return i < s.size() && j < p.size() && (s[i] == p[j] || p[j] == '.') && help(s, p, i + 1, j + 1);
+        }
+    }
 };
