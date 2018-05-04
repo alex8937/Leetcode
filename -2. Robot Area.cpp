@@ -4,6 +4,8 @@
 # include<unordered_map>
 # include<utility>
 # include <cassert>
+# include <boost/functional/hash.hpp>
+
 using namespace std;
 
 class Robot{
