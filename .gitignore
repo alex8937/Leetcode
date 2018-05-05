@@ -1,2 +1,3 @@
 *.exe
 *.xlsx
+__pycache__/
