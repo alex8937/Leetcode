@@ -1,5 +1,6 @@
 class Solution {
 public:
+//ver 1
     string countAndSay(int n) {
         string ans = "1";
         for(int i = 2; i <= n; ++i) {
@@ -22,4 +23,28 @@ public:
         }
         return ans;
     }
+};
+
+
+class Solution {
+public:
+// ver 2
+    string countAndSay(int n) {
+        if(n == 1) return "1";
+        string s = countAndSay(n - 1);
+        string ans;
+        int count = 1;
+        for(int i = 1; i <= s.size(); ++i) {
+            if(s[i] != s[i - 1] || i == s.size()) {
+                ans.push_back(count + '0');
+                ans.push_back(s[i - 1]);
+                count = 1;
+            }
+            else {
+                count++;
+            }
+        }
+        return ans;
+    }
+
 };
