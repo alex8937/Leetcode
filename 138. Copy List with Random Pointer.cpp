@@ -1,14 +1,6 @@
-/**
- * Definition for singly-linked list with a random pointer.
- * struct RandomListNode {
- *     int label;
- *     RandomListNode *next, *random;
- *     RandomListNode(int x) : label(x), next(NULL), random(NULL) {}
- * };
- */
 class Solution {
 public:
-// ver1: Using hashmap
+// ver1: Using hashmap: iteration
     RandomListNode *copyRandomList(RandomListNode *head) {
         unordered_map<RandomListNode *, RandomListNode *> dict;
         auto cur = head;
@@ -26,17 +18,27 @@ public:
     }
 };
 
-/**
- * Definition for singly-linked list with a random pointer.
- * struct RandomListNode {
- *     int label;
- *     RandomListNode *next, *random;
- *     RandomListNode(int x) : label(x), next(NULL), random(NULL) {}
- * };
- */
+
 class Solution {
 public:
-// Using pointer as dictionary
+// ver2: Using hashmap: recursion
+    RandomListNode *copyRandomList(RandomListNode *head) {
+        unordered_map<RandomListNode*, RandomListNode*> dict;
+        return copy(head, dict);
+    }
+    RandomListNode * copy(RandomListNode* head, unordered_map<RandomListNode*, RandomListNode*>& dict) {
+        if(!head) return nullptr;
+        if(dict.count(head)) return dict[head];
+        dict[head] = new RandomListNode(head -> label);
+        dict[head] -> next = copy(head -> next, dict);
+        dict[head] -> random = copy(head -> random, dict);
+        return dict[head];
+    }
+};
+
+class Solution {
+public:
+// ver3: Using pointer as dictionary
     RandomListNode *copyRandomList(RandomListNode *head) {
         if(!head) return nullptr;
         auto cur = head;
