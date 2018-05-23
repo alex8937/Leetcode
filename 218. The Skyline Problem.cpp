@@ -6,8 +6,9 @@ vector<pair<int, int>> getSkyline(vector<vector<int>>& buildings) {
 
 
 vector<pair<int, int>> getSkyline(vector<vector<int>>& buildings, int start, int end) {
+  vector<pair<int, int>> ans;
+  if(start > end) return ans;
   if(start == end) {
-    vector<pair<int, int>> ans;
     ans.emplace_back(buildings[start][0], buildings[start][2]);
     ans.emplace_back(buildings[start][1], 0);
     return ans;
