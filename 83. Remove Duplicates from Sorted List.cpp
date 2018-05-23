@@ -11,8 +11,8 @@ public:
 //iteration
     ListNode* deleteDuplicates(ListNode* head) {
         ListNode* cur = head;
-        while(cur && cur -> next) {
-            if(cur -> val == cur -> next -> val) {
+        while(cur) {
+            if(cur -> next && cur -> val == cur -> next -> val) {
                 ListNode* del = cur -> next;
                 cur -> next = cur -> next -> next;
                 delete del;
