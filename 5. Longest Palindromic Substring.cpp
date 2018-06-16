@@ -17,3 +17,24 @@ public:
         return s.substr(longest_start, longest_end - longest_start + 1);
     }
 };
+
+
+
+class Solution {
+public:
+    string longestPalindrome(string s) {
+        int best_start = 0, best_end = 0;
+        for(int i = 0; i < s.size(); ++i) {
+            for(int k = 0; k <= 1; ++k) {
+                int j = 1;
+                while(i + j < s.size() && i - j + k >= 0 && s[i - j + k] == s[i + j]) j++;
+                if(2 * j - k - 2 > best_end - best_start) {
+                    best_end = i + j - 1;
+                    best_start = i - j + 1 + k;
+                } 
+            }
+ 
+        }
+        return s.substr(best_start, best_end - best_start + 1);
+    }
+};

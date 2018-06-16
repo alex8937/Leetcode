@@ -9,28 +9,29 @@
  */
 class Codec {
 private:
-    TreeNode* deserialize(stringstream& ss) {
+    TreeNode* helper(stringstream& ss) {
         string val;
         ss >> val;
         if(val == "#") return nullptr;
-        TreeNode* root = new TreeNode(stoi(val));
-        root -> left = deserialize(ss);
-        root -> right = deserialize(ss);
+        auto root = new TreeNode(stoi(val));
+        root -> left = helper(ss);
+        root -> right = helper(ss);
         return root;
     }
+    
 public:
 
     // Encodes a tree to a single string.
     string serialize(TreeNode* root) {
-        if(!root) return "# ";
-        return to_string(root -> val) + " " + serialize(root -> left) + serialize(root -> right);
+        if(!root) return "#";
+        return to_string(root -> val) + " " + serialize(root -> left) + " "  + serialize(root -> right);
         
     }
 
     // Decodes your encoded data to tree.
     TreeNode* deserialize(string data) {
         stringstream ss(data);
-        return deserialize(ss);
+        return helper(ss);
     }
 };
 
