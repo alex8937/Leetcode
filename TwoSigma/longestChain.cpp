@@ -5,7 +5,8 @@
 using namespace std;
 
 int longestChain(vector<string>& words) {
-  sort(words.begin(), words.end());
+  auto cmp = [](string& s1, string& s2){return (s1.size() < s2.size()) || (s1.size() == s2.size() && s1 < s2);};  
+  sort(words.begin(), words.end(), cmp);
   unordered_map<string, int> dict;
   int ans = 0;
   for(auto word : words) {

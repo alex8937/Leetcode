@@ -9,7 +9,7 @@ def longestChain(words):
   >>> longestChain(["b","ba","bca","bdca","ebdca","b"])
   5
   """
-  words.sort()
+  words.sort(cmp = lambda s1, s2: len(s1) < len(s2) || (len(s1) == len(s2) && s1 < s2))
   visit = {}
   ans = 0
   for word in words:
