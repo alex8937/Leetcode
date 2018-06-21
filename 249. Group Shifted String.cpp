@@ -2,12 +2,8 @@ class Solution {
 public:
     string pattern(string s) {
         string ans;
-        if(s.size() == 1) {
-            ans.push_back('a');
-        }
         for(int i = 1; i < s.size(); ++i) {
-            int diff = s[i] - s[i - 1];
-            if(diff < 0) diff += 26;
+            int diff = (s[i] - s[i - 1] + 26) % 26;
             ans.push_back('0' + diff);
         }
         return ans;

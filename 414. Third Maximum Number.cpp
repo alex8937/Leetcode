@@ -50,14 +50,15 @@ class Solution {
 public:
     int thirdMax(vector<int>& nums) {
       // version 3: one iteration using swap
-        long first, second, third;
-        first = second = third = LONG_MIN;
-        for(long n : nums) {
-            if(first < n) swap(n, first);
-            if(n < first && n > second) swap(n, second);
-            if(n < second && n > third) third = n;
+        long max1 = LONG_MIN, max2 = LONG_MIN, max3 = LONG_MIN;
+        for(auto n : nums) {
+            if(n <= max3 || n == max1 || n == max2) continue;
+            max3 = n;
+            if(max3 > max2) swap(max2, max3);
+            if(max2 > max1) swap(max1, max2);
+            
         }
-        return (third == LONG_MIN)? first : third;
+        return max3 == LONG_MIN? max1 : max3;
     }
 };
 
