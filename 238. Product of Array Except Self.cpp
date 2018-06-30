@@ -17,3 +17,23 @@ public:
         return ans;
     }
 };
+
+//=====================================================
+
+
+class Solution {
+public:
+    vector<int> productExceptSelf(vector<int>& nums) {
+        vector<int> ans = nums;
+        for(int i = 1; i < nums.size(); ++i) {
+           ans[i] = ans[i - 1] * nums[i];
+        }
+        int right = 1;
+        for(int i = int(nums.size()) - 1; i >= 0; --i) {
+            ans[i] = ((i == 0)? 1 : ans[i - 1]) * right;
+            right *= nums[i];
+        }
+        return ans;
+        
+    }
+};
