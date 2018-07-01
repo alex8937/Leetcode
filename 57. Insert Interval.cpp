@@ -29,3 +29,27 @@ public:
         return ans;
     }
 };
+
+
+class Solution {
+public:
+    vector<Interval> insert(vector<Interval>& intervals, Interval newInterval) {
+        vector<Interval> left, right;
+        int start = newInterval.start, end = newInterval.end;
+        for(auto it : intervals) {
+            if(it.end < start) {
+                left.push_back(it);
+            }
+            else if(it.start > end) {
+                right.push_back(it);
+            }
+            else {
+                start = min(start, it.start);
+                end = max(end, it.end);
+            }
+        }
+        left.emplace_back(start, end);
+        left.insert(left.end(), right.begin(), right.end());
+        return left;
+    }
+};
