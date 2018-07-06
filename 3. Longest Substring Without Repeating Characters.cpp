@@ -12,3 +12,21 @@ public:
         return ans;
     }
 };
+
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        int dict[128] = {0};
+        int start = 0, end = 0, ans = 0;
+        while(end < s.size()) {
+            dict[s[end]]++;           
+            while(dict[s[end]] > 1) {
+                dict[s[start]]--;
+                start++;
+            }
+            end++;
+            ans = max(ans, end - start);
+        }
+        return ans;
+    }
+};
