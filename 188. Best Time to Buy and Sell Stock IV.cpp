@@ -17,3 +17,28 @@ int maxProfit(int k, vector<int>& prices) {
 	}
 	return release.back();
 }
+
+
+class Solution {
+public:
+    int maxProfit(int k, vector<int>& prices) {
+        if(k >= prices.size() / 2) {
+            int ans = 0;
+            for(int i = 1; i < prices.size(); ++i) {
+                if(prices[i] > prices[i - 1]) ans += prices[i] - prices[i - 1];
+            }
+            return ans;
+        }
+        else {
+            vector<vector<int>> dp(k + 1, vector<int>(prices.size(), 0));
+            for(int i = 1; i <= k; ++i) {
+                int local_max = INT_MIN;
+                for(int j = 0; j < prices.size(); ++j) {
+                    dp[i][j] = max(dp[i][j - 1], prices[j] + local_max);
+                    local_max = max(local_max, dp[i - 1][j] - prices[j]);
+                }
+            }
+            return dp.back().back();
+        }
+    }
+};
